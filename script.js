@@ -217,3 +217,29 @@ window.onchoosefn = function(event) {
     
     newQuestion(0);
 }
+
+function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, '\\$&');
+    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, ' '));
+}
+
+
+window.addEventListener("load", function() {
+    var operation = getParameterByName("operation");
+    var factscategory = getParameterByName("factscategory");
+    if(factscategory != null) {
+        document.querySelector('label[for="facts-to-' + factscategory + '"]').parentNode.querySelector("input").checked = true;
+        if(operation != null) {
+            window.onchoosefn({
+                currentTarget: {
+                    textContent: operation
+                }
+            });
+        }
+    }
+});

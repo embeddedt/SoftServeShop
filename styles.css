@@ -359,3 +359,8 @@ html, body, #game-container {
 #question-span {
     font-weight: bold;
 }
+
+.padded-radio-label {
+    padding: 4px 0;
+    display: inline-block;
+}
